@@ -1,7 +1,7 @@
 # IP2Email :email:
 
 [![GitHub issues](https://img.shields.io/github/issues/oz-zo/IP2Email?style=for-the-badge)](https://github.com/oz-zo/IP2Email/issues)
-![GitHub all releases](https://img.shields.io/github/downloads/oz-zo/IP2Email/total?color=%230f80c0&style=for-the-badge)
+![GitHub all releases](https://img.shields.io/github/downloads/oz-zo/ip2email/total?style=for-the-badge)
 ![GitHub Repo stars](https://img.shields.io/github/stars/oz-zo/ip2email?style=for-the-badge)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/oz-zo/IP2Email/Build?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/oz-zo/ip2email?style=for-the-badge)

@@ -1,0 +1,65 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Release]
+        platform: [Any CPU]
+
+    runs-on: windows-latest
+
+    env:
+      Solution_Name: IP2Email
+      Solution_Zip: ip2email\IP2Email.zip
+      Wap_Project_Directory: ip2email
+      Wap_Project_Path: ip2email\ip2email.sln
+      Wap_Release_Directory: ip2email\ip2email\bin\release
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1      
+    
+    - name: Encryption key injection
+      run: |
+        $OriginalString = '        internal static readonly string SecurityKey = "";'
+        $ModifyString = '        internal static readonly string SecurityKey = "${{ secrets.ENCRYPTIONKEY }}";'
+        $HelperPath = "ip2email\ip2email\Helpers\TextHelper.cs"
+        $CodeFile = Get-Content -Path $HelperPath -Encoding UTF8
+        $CodeFile.Replace($OriginalString, $ModifyString) | Out-File -FilePath $HelperPath -Confirm:$false -Force:$true -Encoding UTF8
+    
+    - name: Build the app
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:platform=$env:Platform
+      env:
+        Platform: ${{ matrix.platform }}        
+        Configuration: ${{ matrix.configuration }}
+
+    - name: Cleanup the build
+      run: |
+        Get-ChildItem -Path $env:Wap_Release_Directory -Exclude "*.exe" | Remove-Item -Force -Confirm:$false
+        Copy-Item -Path README.md -Destination $env:Wap_Release_Directory -Confirm:$false -Force
+    
+    - name: Compress the build
+      run: |
+        $Build_Directory = Rename-Item -Path $env:Wap_Release_Directory -NewName $env:Solution_Name -PassThru | Select-Object -ExpandProperty FullName          
+        Compress-Archive -Path $Build_Directory -DestinationPath $env:Solution_Zip -Verbose
+
+    - name: Upload archives to release
+      uses: svenstaro/upload-release-action@master
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ip2email\IP2Email.zip
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
+        prerelease: true

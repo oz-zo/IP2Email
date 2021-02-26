@@ -45,8 +45,8 @@ namespace IP2Email.Helpers
         {
             Console.WriteLine();
             Console.WriteLine("IP2Email sends an email with your public IP address got by https://ifconfig.me");
-            Console.WriteLine("Copyright 2020—2021, oZZo.");
-            Console.WriteLine("https://github.com/oz-zo/ip2email");
+            Console.WriteLine("Copyright (C) 2020 — 2021, Inestic");
+            Console.WriteLine("https://github.com/inestic/ip2email");
             Console.WriteLine();
         }
 

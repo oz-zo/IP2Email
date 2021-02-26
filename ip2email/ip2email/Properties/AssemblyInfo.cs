@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("IP2Email sends an email with your public IP address got by https://ifconfig.me")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("https://github.com/oz-zo/ip2email/")]
+[assembly: AssemblyCompany("https://github.com/inestic/ip2email/")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Copyright © 2020 oZZo")]
+[assembly: AssemblyCopyright("Copyright 2020 - 2021, Inestic")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

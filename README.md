@@ -1,24 +1,23 @@
 # IP2Email :email:
 
-[![GitHub issues](https://img.shields.io/github/issues/oz-zo/IP2Email?style=for-the-badge)](https://github.com/oz-zo/IP2Email/issues)
-![GitHub all releases](https://img.shields.io/github/downloads/oz-zo/ip2email/total?style=for-the-badge)
-![GitHub Repo stars](https://img.shields.io/github/stars/oz-zo/ip2email?style=for-the-badge)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/oz-zo/ip2email/Build%20&%20Release?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/oz-zo/ip2email?style=for-the-badge)
+[![GitHub issues](https://img.shields.io/github/issues/inestic/IP2Email?style=for-the-badge)](https://github.com/inestic/IP2Email/issues)
+![GitHub all releases](https://img.shields.io/github/downloads/inestic/ip2email/total?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/inestic/ip2email?style=for-the-badge)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/inestic/ip2email/Build%20&%20Release?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/inestic/ip2email?style=for-the-badge)
 
 IP2Email sends an email with your public IP address got by <https://ifconfig.me>
 
 ## Screenshots
 
-<div>
 <details>
   <summary>Screenshots</summary>
-  <img src="https://github.com/oz-zo/scrn/raw/main/screenshots/ip2email-view.png" alt="Show IP screen">
-  <img src="https://github.com/oz-zo/scrn/raw/main/screenshots/ip2email-config.png" alt="Configuration screen">
-  <img src="https://github.com/oz-zo/scrn/raw/main/screenshots/ip2email-send.png" alt="Email send screen">
-  <img src="https://github.com/oz-zo/scrn/raw/main/screenshots/ip2email-help.png" alt="Help screen">
+  
+  ![Image](https://github.com/oz-zo/scrn/raw/main/screenshots/ip2email-view.png)
+  ![Image](https://github.com/oz-zo/scrn/raw/main/screenshots/ip2email-config.png)  
+  ![Image](https://github.com/oz-zo/scrn/raw/main/screenshots/ip2email-help.png)
+  
 </details>
-</div>
 
 ## Usage options
 

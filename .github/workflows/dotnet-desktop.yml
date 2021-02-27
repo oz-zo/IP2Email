@@ -1,0 +1,65 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Release]
+        platform: [Any CPU]
+
+    runs-on: windows-latest  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+
+    env:
+      Solution_Name: IP2Email                                   # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Zip: IP2Email.zip      
+      Wap_Project_Directory: ip2email                           # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+      Wap_Project_Path: ip2email\ip2email.sln                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.      
+      Wap_Release_Directory: ip2email\ip2email\bin\release      
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1
+    
+    - name: Build the app
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:platform=$env:Platform
+            
+      env:        
+        Platform: ${{ matrix.platform }}        
+        Configuration: ${{ matrix.configuration }}
+        
+    - name: Cleanup the build
+      run: Get-ChildItem -Path $env:Wap_Release_Directory -Exclude "*.exe" | Remove-Item -Force -Confirm:$false           
+      
+    - name: Compress the build
+      run: |
+        $Build_Zip = "{0}\{1}.zip"-f $env:Wap_Project_Directory, $env:Solution_Name                
+        $Build_Directory = Rename-Item -Path $env:Wap_Release_Directory -NewName $env:Solution_Name -PassThru | Select-Object -ExpandProperty FullName          
+        Compress-Archive -Path $Build_Directory -DestinationPath $Build_Zip
+          
+    - name: Upload archives to release      
+      uses: svenstaro/upload-release-action@master
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: "ip2email/IP2Email.zip"
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
+          prerelease: true
+ 
+     
+     
+  
+  
+      
+
+   
